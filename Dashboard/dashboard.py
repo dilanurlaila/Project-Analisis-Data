@@ -10,8 +10,8 @@ st.write("Current working directory:", os.getcwd())  # Direktori kerja saat ini
 
 # Perbaiki path file
 base_dir = os.getcwd()  # Ambil direktori kerja saat ini
-hour_file_path = os.path.join(base_dir, "data", "hourly_rentals.csv")
-day_file_path = os.path.join(base_dir, "data", "daily_rentals.csv")
+hour_file_path = ("hourly_rentals.csv")
+day_file_path = ("daily_rentals.csv")
 
 # Debugging: Menampilkan path file CSV
 st.write("Hourly file path:", hour_file_path)
