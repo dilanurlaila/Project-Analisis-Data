@@ -13,9 +13,9 @@ dataset_option = st.sidebar.selectbox("Dataset", ["Hourly Rentals", "Daily Renta
 
 # Load dataset berdasarkan pilihan
 if dataset_option == "Hourly Rentals":
-    df = pd.read_csv("data/hourly_rentals.csv")
+    df = pd.read_csv("/Users/dilanurlaile/Documents/Submission/Dashboard/data/hourly_rentals.csv")
 else:
-    df = pd.read_csv("data/daily_rentals.csv")
+    df = pd.read_csv("/Users/dilanurlaile/Documents/Submission/Dashboard/data/daily_rentals.csv")
 
 # Tampilkan data
 st.write("### Preview Dataset")
