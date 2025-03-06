@@ -4,12 +4,26 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from analysis import run_clustering  
 import os
+from pathlib import Path
 
-hour_file_path = ("hourly_rentals.csv")
-day_file_path = ("daily_rentals.csv")
+hourly_path = Path("hourly_rentals.csv")
+daily_path = Path("daily_rentals.csv")
 
-print(os.getcwd())  # Cek direktori kerja saat ini
-print(os.listdir())  
+# Periksa apakah kedua file ada
+if hourly_path.exists() and daily_path.exists():
+    # Baca CSV
+    df_hourly = pd.read_csv(hourly_path)
+    df_daily = pd.read_csv(daily_path)
+
+    # Tampilkan di Streamlit
+    st.write("### Preview Dataset - Hourly Rentals")
+    st.dataframe(df_hourly.head())
+
+    st.write("### Preview Dataset - Daily Rentals")
+    st.dataframe(df_daily.head())
+
+else:
+    st.error("Salah satu atau kedua file CSV tidak ditemukan! Cek kembali path-nya.")
 
 # Judul Dashboard
 st.title("📊 Dashboard Analisis Bike Sharing")
@@ -22,15 +36,15 @@ dataset_option = st.sidebar.selectbox("Dataset", ["Hourly Rentals", "Daily Renta
 df = None  # Pastikan df selalu didefinisikan
 
 if dataset_option == "Hourly Rentals":
-    if os.path.exists(hour_file_path):
-        df = pd.read_csv(hour_file_path)
+    if os.path.exists(hourly_path):
+        df = pd.read_csv(hourly_path)
     else:
-        st.error(f"File {hour_file_path} tidak ditemukan!")
+        st.error(f"File {hourly_path} tidak ditemukan!")
 else:
-    if os.path.exists(day_file_path):
-        df = pd.read_csv(day_file_path)
+    if os.path.exists(daily_path):
+        df = pd.read_csv(daily_path)
     else:
-        st.error(f"File {day_file_path} tidak ditemukan!")
+        st.error(f"File {daily_path} tidak ditemukan!")
 
 # Tampilkan data
 st.write("### Preview Dataset")
