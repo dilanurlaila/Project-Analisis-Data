@@ -29,10 +29,6 @@ else:
     else:
         st.error(f"File {day_file_path} tidak ditemukan!")
 
-# Pastikan df tidak kosong sebelum ditampilkan
-if df is not None:
-    st.dataframe(df.head())
-
 # Tampilkan data
 st.write("### Preview Dataset")
 st.dataframe(df.head())
