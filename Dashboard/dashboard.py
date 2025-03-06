@@ -6,8 +6,8 @@ from analysis import run_clustering
 import os
 from pathlib import Path
 
-hourly_path = Path("data/hourly_rentals.csv")
-daily_path = Path("data/daily_rentals.csv")
+hourly_df = pd.read_csv('data/hourly_rentals.csv')
+daily_df = pd.read_csv('data/daily_rentals.csv')
 
 # Judul Dashboard
 st.title("📊 Dashboard Analisis Bike Sharing")
@@ -19,9 +19,9 @@ dataset_option = st.sidebar.selectbox("Dataset", ["Hourly Rentals", "Daily Renta
 # Load dataset berdasarkan pilihan
 #df = None  # Pastikan df selalu didefinisikan
 if dataset_option == "Hourly Rentals":
-    df = pd.read_csv("data/hourly_rentals.csv")
+    df = hourly_df
 else:
-    df = pd.read_csv("data/daily_rentals.csv")
+    df = daily_df
 # Tampilkan data
 st.write("### Preview Dataset")
 st.dataframe(df.head())
