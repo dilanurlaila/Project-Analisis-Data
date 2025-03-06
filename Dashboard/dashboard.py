@@ -6,13 +6,20 @@ from analysis import run_clustering
 import os
 
 # Debugging: Menampilkan path saat ini di terminal/log
-print("Current working directory:", os.getcwd())  # Direktori kerja saat ini
-print("File absolute path:", os.path.abspath(__file__))  # Path absolut dari script
+st.write("Current working directory:", os.getcwd())  # Direktori kerja saat ini
 
-# Menentukan path absolut ke folder script berjalan
-hour_file_path = os.path.join("data", "hourly_rentals.csv")
-day_file_path = os.path.join("data", "daily_rentals.csv")
+# Perbaiki path file
+base_dir = os.getcwd()  # Ambil direktori kerja saat ini
+hour_file_path = os.path.join(base_dir, "data", "hourly_rentals.csv")
+day_file_path = os.path.join(base_dir, "data", "daily_rentals.csv")
 
+# Debugging: Menampilkan path file CSV
+st.write("Hourly file path:", hour_file_path)
+st.write("Daily file path:", day_file_path)
+
+# Cek apakah file benar-benar ada
+st.write("Hourly file exists:", os.path.exists(hour_file_path))
+st.write("Daily file exists:", os.path.exists(day_file_path))
 
 # Judul Dashboard
 st.title("📊 Dashboard Analisis Bike Sharing")
@@ -22,10 +29,22 @@ st.sidebar.header("Pilih Dataset")
 dataset_option = st.sidebar.selectbox("Dataset", ["Hourly Rentals", "Daily Rentals"])
 
 # Load dataset berdasarkan pilihan
+df = None  # Pastikan df selalu didefinisikan
+
 if dataset_option == "Hourly Rentals":
-    df = pd.read_csv(hour_file_path)
+    if os.path.exists(hour_file_path):
+        df = pd.read_csv(hour_file_path)
+    else:
+        st.error(f"File {hour_file_path} tidak ditemukan!")
 else:
-    df = pd.read_csv(day_file_path)
+    if os.path.exists(day_file_path):
+        df = pd.read_csv(day_file_path)
+    else:
+        st.error(f"File {day_file_path} tidak ditemukan!")
+
+# Pastikan df tidak kosong sebelum ditampilkan
+if df is not None:
+    st.dataframe(df.head())
 
 # Tampilkan data
 st.write("### Preview Dataset")
