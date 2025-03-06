@@ -8,6 +8,9 @@ import os
 hour_file_path = ("hourly_rentals.csv")
 day_file_path = ("daily_rentals.csv")
 
+print(os.getcwd())  # Cek direktori kerja saat ini
+print(os.listdir())  
+
 # Judul Dashboard
 st.title("📊 Dashboard Analisis Bike Sharing")
 
