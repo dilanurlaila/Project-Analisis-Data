@@ -3,6 +3,22 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from analysis import run_clustering  
+import os
+
+# Debugging: Menampilkan path saat ini di terminal/log
+print("Current working directory:", os.getcwd())  # Direktori kerja saat ini
+print("File absolute path:", os.path.abspath(__file__))  # Path absolut dari script
+
+# Menentukan path absolut ke folder script berjalan
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+file_path = os.path.join(BASE_DIR, "data", "hourly_rentals.csv")
+
+# Debugging: Cek apakah file ditemukan
+if not os.path.exists(file_path):
+    print("File not found:", file_path)
+else:
+    print("File found:", file_path)
+
 
 # Judul Dashboard
 st.title("📊 Dashboard Analisis Bike Sharing")
@@ -13,9 +29,9 @@ dataset_option = st.sidebar.selectbox("Dataset", ["Hourly Rentals", "Daily Renta
 
 # Load dataset berdasarkan pilihan
 if dataset_option == "Hourly Rentals":
-    df = pd.read_csv("/Users/dilanurlaile/Documents/Submission/Dashboard/data/hourly_rentals.csv")
+    df = pd.read_csv("/Dashboard/data/hourly_rentals.csv")
 else:
-    df = pd.read_csv("/Users/dilanurlaile/Documents/Submission/Dashboard/data/daily_rentals.csv")
+    df = pd.read_csv("/Dashboard/data/daily_rentals.csv")
 
 # Tampilkan data
 st.write("### Preview Dataset")
