@@ -10,14 +10,8 @@ print("Current working directory:", os.getcwd())  # Direktori kerja saat ini
 print("File absolute path:", os.path.abspath(__file__))  # Path absolut dari script
 
 # Menentukan path absolut ke folder script berjalan
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(BASE_DIR, "data", "hourly_rentals.csv")
-
-# Debugging: Cek apakah file ditemukan
-if not os.path.exists(file_path):
-    print("File not found:", file_path)
-else:
-    print("File found:", file_path)
+hour_file_path = os.path.join("data", "hourly_rentals.csv")
+day_file_path = os.path.join("data", "daily_rentals.csv")
 
 
 # Judul Dashboard
@@ -29,9 +23,9 @@ dataset_option = st.sidebar.selectbox("Dataset", ["Hourly Rentals", "Daily Renta
 
 # Load dataset berdasarkan pilihan
 if dataset_option == "Hourly Rentals":
-    df = pd.read_csv("/Dashboard/data/hourly_rentals.csv")
+    df = pd.read_csv(hour_file_path)
 else:
-    df = pd.read_csv("/Dashboard/data/daily_rentals.csv")
+    df = pd.read_csv(day_file_path)
 
 # Tampilkan data
 st.write("### Preview Dataset")
