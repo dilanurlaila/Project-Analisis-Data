@@ -5,21 +5,8 @@ import seaborn as sns
 from analysis import run_clustering  
 import os
 
-# Debugging: Menampilkan path saat ini di terminal/log
-st.write("Current working directory:", os.getcwd())  # Direktori kerja saat ini
-
-# Perbaiki path file
-base_dir = os.getcwd()  # Ambil direktori kerja saat ini
 hour_file_path = ("hourly_rentals.csv")
 day_file_path = ("daily_rentals.csv")
-
-# Debugging: Menampilkan path file CSV
-st.write("Hourly file path:", hour_file_path)
-st.write("Daily file path:", day_file_path)
-
-# Cek apakah file benar-benar ada
-st.write("Hourly file exists:", os.path.exists(hour_file_path))
-st.write("Daily file exists:", os.path.exists(day_file_path))
 
 # Judul Dashboard
 st.title("📊 Dashboard Analisis Bike Sharing")
