@@ -6,24 +6,8 @@ from analysis import run_clustering
 import os
 from pathlib import Path
 
-hourly_path = Path("hourly_rentals.csv")
-daily_path = Path("daily_rentals.csv")
-
-# Periksa apakah kedua file ada
-if hourly_path.exists() and daily_path.exists():
-    # Baca CSV
-    df_hourly = pd.read_csv(hourly_path)
-    df_daily = pd.read_csv(daily_path)
-
-    # Tampilkan di Streamlit
-    st.write("### Preview Dataset - Hourly Rentals")
-    st.dataframe(df_hourly.head())
-
-    st.write("### Preview Dataset - Daily Rentals")
-    st.dataframe(df_daily.head())
-
-else:
-    st.error("Salah satu atau kedua file CSV tidak ditemukan! Cek kembali path-nya.")
+hourly_path = Path("data/hourly_rentals.csv")
+daily_path = Path("data/daily_rentals.csv")
 
 # Judul Dashboard
 st.title("📊 Dashboard Analisis Bike Sharing")
@@ -34,18 +18,10 @@ dataset_option = st.sidebar.selectbox("Dataset", ["Hourly Rentals", "Daily Renta
 
 # Load dataset berdasarkan pilihan
 df = None  # Pastikan df selalu didefinisikan
-
 if dataset_option == "Hourly Rentals":
-    if os.path.exists(hourly_path):
-        df = pd.read_csv(hourly_path)
-    else:
-        st.error(f"File {hourly_path} tidak ditemukan!")
+    df = pd.read_csv(hourly_path)
 else:
-    if os.path.exists(daily_path):
-        df = pd.read_csv(daily_path)
-    else:
-        st.error(f"File {daily_path} tidak ditemukan!")
-
+    df = pd.read_csv(daily_path)
 # Tampilkan data
 st.write("### Preview Dataset")
 st.dataframe(df.head())
