@@ -17,7 +17,7 @@ st.sidebar.header("Pilih Dataset")
 dataset_option = st.sidebar.selectbox("Dataset", ["Hourly Rentals", "Daily Rentals"])
 
 # Load dataset berdasarkan pilihan
-df = None  # Pastikan df selalu didefinisikan
+#df = None  # Pastikan df selalu didefinisikan
 if dataset_option == "Hourly Rentals":
     df = pd.read_csv("data/hourly_rentals.csv")
 else:
